@@ -1,0 +1,458 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DCBA3B052E674884000BC8D3 /* DnaCommunicator in Frameworks */ = {isa = PBXBuildFile; productRef = DCBA3B042E674884000BC8D3 /* DnaCommunicator */; };
+		DCBA3B082E67491C000BC8D3 /* DnaCommunicator in Frameworks */ = {isa = PBXBuildFile; productRef = DCBA3B072E67491C000BC8D3 /* DnaCommunicator */; };
+		DCBA3B0B2E6749B6000BC8D3 /* DnaCommunicator in Frameworks */ = {isa = PBXBuildFile; productRef = DCBA3B0A2E6749B6000BC8D3 /* DnaCommunicator */; };
+		DCBA3B0E2E674AB2000BC8D3 /* DnaCommunicator in Frameworks */ = {isa = PBXBuildFile; productRef = DCBA3B0D2E674AB2000BC8D3 /* DnaCommunicator */; };
+		DCBA3B1A2E674AFC000BC8D3 /* DnaCommunicator in Frameworks */ = {isa = PBXBuildFile; productRef = DCBA3B192E674AFC000BC8D3 /* DnaCommunicator */; };
+		DCBA3BC52E68CC3F000BC8D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCBA3BBD2E68CC3F000BC8D3 /* Assets.xcassets */; };
+		DCBA3BC62E68CC3F000BC8D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA3BBA2E68CC3F000BC8D3 /* ContentView.swift */; };
+		DCBA3BC72E68CC3F000BC8D3 /* ReadCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA3BBB2E68CC3F000BC8D3 /* ReadCardView.swift */; };
+		DCBA3BC82E68CC3F000BC8D3 /* DnaTestingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA3BBE2E68CC3F000BC8D3 /* DnaTestingApp.swift */; };
+		DCBA3BC92E68CC3F000BC8D3 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA3BBF2E68CC3F000BC8D3 /* NavigationCoordinator.swift */; };
+		DCBA3BCA2E68CC3F000BC8D3 /* NfcReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA3BC02E68CC3F000BC8D3 /* NfcReader.swift */; };
+		DCBA3BCB2E68CC3F000BC8D3 /* NFCReaderError+Ignore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA3BC12E68CC3F000BC8D3 /* NFCReaderError+Ignore.swift */; };
+		DCBA3BCC2E68CC3F000BC8D3 /* PresetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA3BC22E68CC3F000BC8D3 /* PresetKey.swift */; };
+		DCBA3C0C2E69DD05000BC8D3 /* WriteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA3C0B2E69DD01000BC8D3 /* WriteCardView.swift */; };
+		DCBA3C4C2E6A2688000BC8D3 /* NfcWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA3C4B2E6A2688000BC8D3 /* NfcWriter.swift */; };
+		DCBA3C4E2E6B3204000BC8D3 /* ResetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA3C4D2E6B3200000BC8D3 /* ResetCardView.swift */; };
+		DCBA3CCB2E6F2DF6000BC8D3 /* PresetTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA3CCA2E6F2DF2000BC8D3 /* PresetTemplate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DCBA3AF22E67480B000BC8D3 /* DnaTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DnaTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCBA3BBA2E68CC3F000BC8D3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DCBA3BBB2E68CC3F000BC8D3 /* ReadCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadCardView.swift; sourceTree = "<group>"; };
+		DCBA3BBD2E68CC3F000BC8D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DCBA3BBE2E68CC3F000BC8D3 /* DnaTestingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DnaTestingApp.swift; sourceTree = "<group>"; };
+		DCBA3BBF2E68CC3F000BC8D3 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
+		DCBA3BC02E68CC3F000BC8D3 /* NfcReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NfcReader.swift; sourceTree = "<group>"; };
+		DCBA3BC12E68CC3F000BC8D3 /* NFCReaderError+Ignore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NFCReaderError+Ignore.swift"; sourceTree = "<group>"; };
+		DCBA3BC22E68CC3F000BC8D3 /* PresetKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetKey.swift; sourceTree = "<group>"; };
+		DCBA3C0B2E69DD01000BC8D3 /* WriteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCardView.swift; sourceTree = "<group>"; };
+		DCBA3C4A2E6A2302000BC8D3 /* DnaTesting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DnaTesting.entitlements; sourceTree = "<group>"; };
+		DCBA3C4B2E6A2688000BC8D3 /* NfcWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NfcWriter.swift; sourceTree = "<group>"; };
+		DCBA3C4D2E6B3200000BC8D3 /* ResetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetCardView.swift; sourceTree = "<group>"; };
+		DCBA3CC92E6B36E1000BC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DCBA3CCA2E6F2DF2000BC8D3 /* PresetTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetTemplate.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DCBA3AEF2E67480B000BC8D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCBA3B052E674884000BC8D3 /* DnaCommunicator in Frameworks */,
+				DCBA3B0B2E6749B6000BC8D3 /* DnaCommunicator in Frameworks */,
+				DCBA3B082E67491C000BC8D3 /* DnaCommunicator in Frameworks */,
+				DCBA3B0E2E674AB2000BC8D3 /* DnaCommunicator in Frameworks */,
+				DCBA3B1A2E674AFC000BC8D3 /* DnaCommunicator in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DCBA3AE92E67480B000BC8D3 = {
+			isa = PBXGroup;
+			children = (
+				DCBA3AF32E67480B000BC8D3 /* Products */,
+				DCBA3BC32E68CC3F000BC8D3 /* DnaTesting */,
+			);
+			sourceTree = "<group>";
+		};
+		DCBA3AF32E67480B000BC8D3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DCBA3AF22E67480B000BC8D3 /* DnaTesting.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DCBA3BB72E68CC3F000BC8D3 /* Nfc */ = {
+			isa = PBXGroup;
+			children = (
+				DCBA3BC02E68CC3F000BC8D3 /* NfcReader.swift */,
+				DCBA3BC12E68CC3F000BC8D3 /* NFCReaderError+Ignore.swift */,
+				DCBA3C4B2E6A2688000BC8D3 /* NfcWriter.swift */,
+			);
+			path = Nfc;
+			sourceTree = "<group>";
+		};
+		DCBA3BBC2E68CC3F000BC8D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DCBA3BBA2E68CC3F000BC8D3 /* ContentView.swift */,
+				DCBA3BBF2E68CC3F000BC8D3 /* NavigationCoordinator.swift */,
+				DCBA3BBB2E68CC3F000BC8D3 /* ReadCardView.swift */,
+				DCBA3C4D2E6B3200000BC8D3 /* ResetCardView.swift */,
+				DCBA3C0B2E69DD01000BC8D3 /* WriteCardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DCBA3BC32E68CC3F000BC8D3 /* DnaTesting */ = {
+			isa = PBXGroup;
+			children = (
+				DCBA3CC92E6B36E1000BC8D3 /* Info.plist */,
+				DCBA3C4A2E6A2302000BC8D3 /* DnaTesting.entitlements */,
+				DCBA3BBD2E68CC3F000BC8D3 /* Assets.xcassets */,
+				DCBA3BBE2E68CC3F000BC8D3 /* DnaTestingApp.swift */,
+				DCBA3BBC2E68CC3F000BC8D3 /* Views */,
+				DCBA3BCD2E68CC6A000BC8D3 /* Utils */,
+				DCBA3BB72E68CC3F000BC8D3 /* Nfc */,
+			);
+			path = DnaTesting;
+			sourceTree = "<group>";
+		};
+		DCBA3BCD2E68CC6A000BC8D3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DCBA3BC22E68CC3F000BC8D3 /* PresetKey.swift */,
+				DCBA3CCA2E6F2DF2000BC8D3 /* PresetTemplate.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DCBA3AF12E67480B000BC8D3 /* DnaTesting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCBA3B002E67480C000BC8D3 /* Build configuration list for PBXNativeTarget "DnaTesting" */;
+			buildPhases = (
+				DCBA3AEE2E67480B000BC8D3 /* Sources */,
+				DCBA3AEF2E67480B000BC8D3 /* Frameworks */,
+				DCBA3AF02E67480B000BC8D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DnaTesting;
+			packageProductDependencies = (
+				DCBA3B042E674884000BC8D3 /* DnaCommunicator */,
+				DCBA3B072E67491C000BC8D3 /* DnaCommunicator */,
+				DCBA3B0A2E6749B6000BC8D3 /* DnaCommunicator */,
+				DCBA3B0D2E674AB2000BC8D3 /* DnaCommunicator */,
+				DCBA3B192E674AFC000BC8D3 /* DnaCommunicator */,
+			);
+			productName = DnaTesting;
+			productReference = DCBA3AF22E67480B000BC8D3 /* DnaTesting.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DCBA3AEA2E67480B000BC8D3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					DCBA3AF12E67480B000BC8D3 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+				};
+			};
+			buildConfigurationList = DCBA3AED2E67480B000BC8D3 /* Build configuration list for PBXProject "DnaTesting" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DCBA3AE92E67480B000BC8D3;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DCBA3B182E674AFC000BC8D3 /* XCLocalSwiftPackageReference "../../DnaCommunicator" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = DCBA3AF32E67480B000BC8D3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DCBA3AF12E67480B000BC8D3 /* DnaTesting */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DCBA3AF02E67480B000BC8D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCBA3BC52E68CC3F000BC8D3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DCBA3AEE2E67480B000BC8D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCBA3BC62E68CC3F000BC8D3 /* ContentView.swift in Sources */,
+				DCBA3BC72E68CC3F000BC8D3 /* ReadCardView.swift in Sources */,
+				DCBA3BC82E68CC3F000BC8D3 /* DnaTestingApp.swift in Sources */,
+				DCBA3BC92E68CC3F000BC8D3 /* NavigationCoordinator.swift in Sources */,
+				DCBA3BCA2E68CC3F000BC8D3 /* NfcReader.swift in Sources */,
+				DCBA3CCB2E6F2DF6000BC8D3 /* PresetTemplate.swift in Sources */,
+				DCBA3BCB2E68CC3F000BC8D3 /* NFCReaderError+Ignore.swift in Sources */,
+				DCBA3C4C2E6A2688000BC8D3 /* NfcWriter.swift in Sources */,
+				DCBA3C0C2E69DD05000BC8D3 /* WriteCardView.swift in Sources */,
+				DCBA3C4E2E6B3204000BC8D3 /* ResetCardView.swift in Sources */,
+				DCBA3BCC2E68CC3F000BC8D3 /* PresetKey.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DCBA3AFE2E67480C000BC8D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DCBA3AFF2E67480C000BC8D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DCBA3B012E67480C000BC8D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DnaTesting/DnaTesting.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XD77LN4376;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DnaTesting/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NFCReaderUsageDescription = "The app would like to scan an NFC card.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.acinq.DnaTesting;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DCBA3B022E67480C000BC8D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DnaTesting/DnaTesting.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XD77LN4376;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DnaTesting/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NFCReaderUsageDescription = "The app would like to scan an NFC card.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.acinq.DnaTesting;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DCBA3AED2E67480B000BC8D3 /* Build configuration list for PBXProject "DnaTesting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCBA3AFE2E67480C000BC8D3 /* Debug */,
+				DCBA3AFF2E67480C000BC8D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCBA3B002E67480C000BC8D3 /* Build configuration list for PBXNativeTarget "DnaTesting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCBA3B012E67480C000BC8D3 /* Debug */,
+				DCBA3B022E67480C000BC8D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		DCBA3B182E674AFC000BC8D3 /* XCLocalSwiftPackageReference "../../DnaCommunicator" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../DnaCommunicator;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DCBA3B042E674884000BC8D3 /* DnaCommunicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DnaCommunicator;
+		};
+		DCBA3B072E67491C000BC8D3 /* DnaCommunicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DnaCommunicator;
+		};
+		DCBA3B0A2E6749B6000BC8D3 /* DnaCommunicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DnaCommunicator;
+		};
+		DCBA3B0D2E674AB2000BC8D3 /* DnaCommunicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DnaCommunicator;
+		};
+		DCBA3B192E674AFC000BC8D3 /* DnaCommunicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DnaCommunicator;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DCBA3AEA2E67480B000BC8D3 /* Project object */;
+}

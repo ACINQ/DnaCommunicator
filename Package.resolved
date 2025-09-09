@@ -1,0 +1,14 @@
+{
+  "originHash" : "cc569663d04f1dc3d477a423d2228c2bf52e5d653f05265fed6a3b09a44f411f",
+  "pins" : [
+    {
+      "identity" : "swcrypt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/soyersoyer/SwCrypt",
+      "state" : {
+        "revision" : "50e5267524f6e379318e6df4cdd1617ae379dc47"
+      }
+    }
+  ],
+  "version" : 3
+}
