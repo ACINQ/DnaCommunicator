@@ -129,6 +129,12 @@ A sample Xcode project is included that shows how to:
 
 
 
+
+https://github.com/user-attachments/assets/38ce9882-dc36-4545-9370-56c4622bbf73
+
+
+
+
 (*Note that you don't need the DnaCommunicator project to read from a NTAG 424 DNA tag. You can just use `NFCNDEFReaderSession` and read it as a normal NDEF tag.*)
 
 
