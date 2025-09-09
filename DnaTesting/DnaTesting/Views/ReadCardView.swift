@@ -320,7 +320,9 @@ struct ReadCardView: View {
 		case .failure(let reason):
 			switch reason {
 			case .piccDataMissing:
-				decryptResult = .error("Unable to extract query items: picc_data is missing")
+				// This is the expected error message if value is something else,
+				// like a simple URL or text value.
+				decryptResult = nil
 			case .piccDataInvalid:
 				decryptResult = .error("Unable to extract query items: picc_data is invalid")
 			case .cmacMissing:
