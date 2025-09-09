@@ -36,14 +36,14 @@ To use DnaCommunicator, you first setup a [NFCTagReaderSession](https://develope
 class NfcWriter: NSObject, NFCTagReaderSessionDelegate {
   
   let queue = DispatchQueue(label: "NfcWriter")
-	var session: NFCTagReaderSession? = nil
+  var session: NFCTagReaderSession? = nil
   
   func start() {
     guard NFCReaderSession.readingAvailable else {
       // NFC capabilities not available on this device
       return
     }
-			
+
     session = NFCTagReaderSession(pollingOption: .iso14443, delegate: self, queue: queue)
     session?.alertMessage = "Hold your card near the device to program it."
     session?.begin()
@@ -51,69 +51,68 @@ class NfcWriter: NSObject, NFCTagReaderSessionDelegate {
   
   func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
     // NFC UI sheet is being displayed by iOS
-	}
-	
-	func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: any Error) {
+  }
+
+  func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: any Error) {
     // Handle error here
-	}
-	
-	func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
-		
-		var properTag: NFCTag? = nil
-		for tag in tags {
-			if case .iso7816 = tag {
-				if properTag == nil {
-					properTag = tag
-				}
-			}
-		}
-		
-		if let properTag {
-			Task {
-				await connectToTag(properTag)
-			}
-		} else {
-			session.restartPolling()
-		}
-	}
-  
-  private func connectToTag(_ tag: NFCTag) async {
-		
-		guard case let .iso7816(isoTag) = tag, let session else {
-			return
-		}
-		
-		do {
-			try await session.connect(to: tag)
-			
-			let dnaLogger = {(msg: String) -> Void in
-				print(msg)
-			}
-			let dna = DnaCommunicator(tag: isoTag, logger: dnaLogger)
-			await authenticate(dna)
-			
-    } catch {
-			// handle error
+  }
+
+  func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
+
+    var properTag: NFCTag? = nil
+    for tag in tags {
+      if case .iso7816 = tag {
+        properTag = tag
+        break
+      }
+    }
+
+    if let properTag {
+      Task {
+        await connectToTag(properTag)
+      }
+    } else {
+      session.restartPolling()
     }
   }
-  
-  private func authenticate(
-		_ dna: DnaCommunicator
-	) async {
-		
-		let result = await dna.authenticateEV2First(
-			keyNum  : .KEY_0,
-			keyData : DnaCommunicator.defaultKey
-		)
-		
-		switch result {
-		case .failure(let error):
-			// handle error
+
+  private func connectToTag(_ tag: NFCTag) async {
+
+    guard case let .iso7816(isoTag) = tag, let session else {
+      return
+    }
+
+    do {
+      try await session.connect(to: tag)
+
+      let dnaLogger = {(msg: String) -> Void in
+        print(msg)
+      }
+      let dna = DnaCommunicator(tag: isoTag, logger: dnaLogger)
+      await authenticate(dna)
 			
-		case .success(_):
+    } catch {
+      // handle error
+    }
+  }
+
+  private func authenticate(
+    _ dna: DnaCommunicator
+  ) async {
+
+    let result = await dna.authenticateEV2First(
+      keyNum  : .KEY_0,
+      keyData : DnaCommunicator.defaultKey
+    )
+
+    switch result {
+    case .failure(let error):
+      // handle error
+
+    case .success(_):
       // you can now program the card
-		}
-	}
+    }
+  }
 }
 ```
 
