@@ -256,7 +256,7 @@ foo:bar?picc_data=6fbd71185a71b2fd29a5aa7b7006a8a3&cmac=f135ae3682f25dd7
 ### Dive deeper
 
 * [Demystify the Secure Dynamic Message with NTAG 424 DNA NFC tags (Android/Java) Part 1](https://medium.com/@androidcrypto/demystify-the-secure-dynamic-message-with-ntag-424-dna-nfc-tags-android-java-part-1-b947c482913c)
-* [https://medium.com/@androidcrypto/demystify-the-secure-dynamic-message-with-ntag-424-dna-nfc-tags-android-java-part-2-1f8878faa928](https://medium.com/@androidcrypto/demystify-the-secure-dynamic-message-with-ntag-424-dna-nfc-tags-android-java-part-2-1f8878faa928)
+* [Demystify the Secure Dynamic Message with NTAG 424 DNA NFC tags (Android/Java) Part 2](https://medium.com/@androidcrypto/demystify-the-secure-dynamic-message-with-ntag-424-dna-nfc-tags-android-java-part-2-1f8878faa928)
 * [Product page](https://www.nxp.com/products/rfid-nfc/nfc-hf/ntag-for-tags-and-labels/ntag-424-dna-424-dna-tagtamper-advanced-security-and-privacy-for-trusted-iot-applications:NTAG424DNA)
 * [Specifications PDF](https://www.nxp.com/docs/en/data-sheet/NT4H2421Gx.pdf)
 
