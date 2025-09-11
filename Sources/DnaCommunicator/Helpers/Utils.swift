@@ -1,6 +1,6 @@
 import Foundation
 
-public class Utils {
+class Utils {
 	
 	static func leftNibble(_ data: UInt8) -> UInt8 {
 		return (data >> 4)
