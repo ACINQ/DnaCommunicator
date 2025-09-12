@@ -12,18 +12,11 @@ let package = Package(
 		// Products define the executables and libraries a package produces, making them visible to other packages.
 		.library(name: "DnaCommunicator", targets: ["DnaCommunicator"]),
 	],
-	dependencies: [
-		// Dependencies declare other packages that this package depends on.
-		.package(url: "https://github.com/soyersoyer/SwCrypt", revision: "50e5267524f6e379318e6df4cdd1617ae379dc47")
-	],
 	targets: [
 		// Targets are the basic building blocks of a package, defining a module or a test suite.
 		// Targets can depend on other targets in this package and products from dependencies.
 		.target(
-			name: "DnaCommunicator",
-			dependencies: [
-				.product(name: "SwCrypt", package: "SwCrypt")
-			]
+			name: "DnaCommunicator"
 		),
 	]
 )

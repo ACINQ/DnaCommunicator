@@ -1,5 +1,4 @@
 import Foundation
-import SwCrypt
 
 public class Ntag424 {
 	
@@ -204,12 +203,12 @@ public class Ntag424 {
 		key  : Data
 	) -> Data? {
 		
-		guard SwCrypt.CC.cryptorAvailable() else {
+		guard MiniSwCrypt.CC.available() else {
 			return nil
 		}
 		
 		do {
-			let result = try SwCrypt.CC.crypt(
+			let result = try MiniSwCrypt.CC.crypt(
 				.decrypt,
 				blockMode : .ecb,
 				algorithm : .aes,
@@ -230,10 +229,10 @@ public class Ntag424 {
 		key  : Data
 	) -> Data? {
 		
-		guard SwCrypt.CC.CMAC.available() else {
+		guard MiniSwCrypt.CMAC.available() else {
 			return nil
 		}
 		
-		return SwCrypt.CC.CMAC.AESCMAC(data, key: key)
+		return MiniSwCrypt.CMAC.AESCMAC(data, key: key)
 	}
 }
