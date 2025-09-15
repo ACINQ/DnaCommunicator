@@ -6,6 +6,7 @@ DnaCommincator is an iOS framework for communicating with NFC tags of type [NTAG
 
 The project was inspired by johnnyb's [NfcDnaKit](https://github.com/johnnyb/nfc-dna-kit). We've modernized that project, fixed several bugs, and added a few helpful features.
 
+If you're looking for an Android equivalent, see the [ntag424-java](https://github.com/johnnyb/ntag424-java) project.
 
 
 ## Installation
