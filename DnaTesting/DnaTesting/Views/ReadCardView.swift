@@ -8,6 +8,7 @@ fileprivate let log = Logger.init(subsystem: "DnaTesting", category: "ReadCardVi
 enum CardReadResult {
 	case uri(URL)
 	case text(String)
+	case binary(Data)
 	case error(String)
 }
 
@@ -110,6 +111,17 @@ struct ReadCardView: View {
 					.contextMenu {
 						Button {
 							copyToPasteboard(text)
+						} label: {
+							Text("Copy")
+						}
+					} // </contextMenu>
+				
+			case .binary(let data):
+				let hexValue = data.toHex()
+				Text(preventAutoHyphenation(hexValue))
+					.contextMenu {
+						Button {
+							copyToPasteboard(hexValue)
 						} label: {
 							Text("Copy")
 						}
@@ -244,6 +256,7 @@ struct ReadCardView: View {
 		
 		var detectedUri: URL? = nil
 		var detectedText: String? = nil
+		var detectedBinary: Data? = nil
 		
 		message.records.forEach { payload in
 			if let uri = payload.wellKnownTypeURIPayload() {
@@ -258,6 +271,12 @@ struct ReadCardView: View {
 					detectedText = text
 				}
 				
+			} else if payload.typeNameFormat == .unknown {
+				log.debug("found binary")
+				if detectedBinary == nil {
+					detectedBinary = payload.payload
+				}
+				
 			} else {
 				log.debug("found tag with unknown type")
 			}
@@ -269,6 +288,10 @@ struct ReadCardView: View {
 			
 		} else if let detectedText {
 			readResult = .text(detectedText)
+			tryExtractQueryItems()
+			
+		} else if let detectedBinary {
+			readResult = .binary(detectedBinary)
 			tryExtractQueryItems()
 			
 		} else {
@@ -302,11 +325,14 @@ struct ReadCardView: View {
 		
 		guard let readResult else { return }
 		
-		let extractResult: Result<Ntag424.QueryItems, Ntag424.QueryItemsError>? = switch readResult {
+		let extractResult: Result<BoltCardTemplate.DynamicValues, BoltCardTemplate.ExtractionError>? =
+		switch readResult {
 		case .uri(let url):
-			Ntag424.extractQueryItems(url: url)
-		case .text(let text):
-			Ntag424.extractQueryItems(text: text)
+			BoltCardTemplate.extractDynamicValues(url: url)
+		case .text(_):
+			nil
+		case .binary(let binary):
+			BoltCardTemplate.extractDynamicValues(binary: binary)
 		case .error(_):
 			nil
 		}
@@ -314,8 +340,8 @@ struct ReadCardView: View {
 		guard let extractResult else { return }
 		
 		switch extractResult {
-		case .success(let queryItems):
-			tryMatchPresetKey(queryItems)
+		case .success(let dynamicValues):
+			tryMatchPresetKey(dynamicValues)
 			
 		case .failure(let reason):
 			switch reason {
@@ -333,7 +359,7 @@ struct ReadCardView: View {
 		}
 	}
 	
-	func tryMatchPresetKey(_ queryItems: Ntag424.QueryItems) {
+	func tryMatchPresetKey(_ dynamicValues: BoltCardTemplate.DynamicValues) {
 		log.trace(#function)
 		
 		var matchingKey: PresetKey? = nil
@@ -346,8 +372,8 @@ struct ReadCardView: View {
 				cmacKey     : presetKey.keySet.cmacKey
 			)
 			let result = Ntag424.extractPiccDataInfo(
-				piccData : queryItems.piccData,
-				cmac     : queryItems.cmac,
+				piccData : dynamicValues.piccData,
+				cmac     : dynamicValues.cmac,
 				keySet   : keySet
 			)
 

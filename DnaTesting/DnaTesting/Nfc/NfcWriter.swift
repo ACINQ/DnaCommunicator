@@ -13,7 +13,7 @@ class NfcWriter: NSObject, NFCTagReaderSessionDelegate {
 	// --------------------------------------------------
 	
 	struct WriteInput {
-		let template: Ndef.Template
+		let template: BoltCardTemplate
 		let key0: [UInt8]
 		let piccDataKey: [UInt8]
 		let cmacKey: [UInt8]
@@ -439,7 +439,7 @@ class NfcWriter: NSObject, NFCTagReaderSessionDelegate {
 		
 		do {
 			let url = URL(string: "https://phoenix.acinq.co")!
-			let data = Ndef.ndefDataForUrl(url).data
+			let data = Ndef.fileForUrl(url).data
 			try await writeFile2Data(dna, data, file2Settings).get()
 		} catch {
 			return resetDisconnect(error: .protocolError(.writeFile2Data, error))
@@ -951,7 +951,7 @@ class NfcWriter: NSObject, NFCTagReaderSessionDelegate {
 	
 	private func writeFile2Settings(
 		_ dna               : DnaCommunicator,
-		_ template          : Ndef.Template,
+		_ template          : BoltCardTemplate,
 		piccDataKeyPosition : KeySpecifier,
 		cmacKeyPosition     : KeySpecifier
 	) async -> Result<FileSettings, Error> {
@@ -1019,21 +1019,45 @@ class NfcWriter: NSObject, NFCTagReaderSessionDelegate {
 		log.debug("writeFile2Data()")
 		log.debug("data.count = \(data.count)")
 		
-		let result = await dna.writeFileData(
-			fileNum : .NDEF_FILE,
-			data    : data,
-			mode    : settings.communicationMode
-		)
+		// The maximum amount of data we can write in a single step is 239 bytes.
+		//
+		// On page 17 the docs say:
+		// > Note that the maximum number of bytes in the command data field, indicated by Lc,
+		// > cannot exceed 255 bytes since only short length (1 byte) is supported in NT4H2421Gx.
+		// > This includes overhead for secure messaging.
+		//
+		// In the case of `writeFileData`, the command includes:
+		// * header = 7 bytes
+		// * macData = 8 bytes
+		//
+		// Plus, the data is padded & encrypted.
+		// Since padding is always required (see `Utils.messageWithPadding`),
+		// and the output must be a multiple of 16 bytes, our max chunk size must be less than 240.
 		
-		switch result {
-		case .failure(let error):
-			log.error("dna.writeFileData(2): error: \(error)")
-			return .failure(error)
+		let maxChunkSize = 239
+		let chunks = data.chunked(into: maxChunkSize)
+		
+		var offset = 0
+		for chunk in chunks {
+			log.debug("Writing chunk at offset: \(offset)")
 			
-		case .success(_):
-			log.debug("dna.writeFileData(2): success")
-			return .success(())
+			let result = await dna.writeFileData(
+				fileNum : .NDEF_FILE,
+				offset  : offset,
+				data    : chunk,
+				mode    : settings.communicationMode
+			)
+			
+			if case .failure(let error) = result {
+				log.error("dna.writeFileData(2): error: \(error)")
+				return .failure(error)
+			}
+			
+			offset += maxChunkSize
 		}
+		
+		log.debug("dna.writeFileData(2): success")
+		return .success(())
 	}
 	
 	// --------------------------------------------------

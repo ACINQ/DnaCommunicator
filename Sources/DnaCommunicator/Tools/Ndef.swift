@@ -1,47 +1,51 @@
 import Foundation
 
-struct NdefHeaderFlags: OptionSet {
-	let rawValue: UInt8
-	
-	/// Message begin flag
-	static let MB = NdefHeaderFlags(rawValue: 0b10000000)
-	/// Message end flag
-	static let ME = NdefHeaderFlags(rawValue: 0b01000000)
-	/// Chunked flag
-	static let CF = NdefHeaderFlags(rawValue: 0b00100000)
-	/// Short record flag
-	static let SR = NdefHeaderFlags(rawValue: 0b00010000)
-	/// IL (ID Length) is present
-	static let IL = NdefHeaderFlags(rawValue: 0b00001000)
-	
-	/// Type Name Format options:
-	static let TNF_WELL_KNOWN   = NdefHeaderFlags(rawValue: 0b00000001) // 0x01
-	static let TNF_MIME         = NdefHeaderFlags(rawValue: 0b00000010) // 0x02
-	/// Note: don't use this for URLS, use WELLKNOWN instead.
-	static let TNF_ABSOLUTE_URI = NdefHeaderFlags(rawValue: 0b00000011) // 0x03
-	static let TNF_EXTERNAL     = NdefHeaderFlags(rawValue: 0b00000100) // 0x04
-	static let TNF_UNKNOWN      = NdefHeaderFlags(rawValue: 0b00000101) // 0x05
-	static let TNF_UNCHANGED    = NdefHeaderFlags(rawValue: 0b00000110) // 0x06
-	static let TNF_RESERVED     = NdefHeaderFlags(rawValue: 0b00000111) // 0x07
-}
-
-enum NdefHeaderType: UInt8 {
-	case TEXT = 0x54 // 'T'.ascii
-	case URL  = 0x55 // 'U'.ascii
-}
-
 public class Ndef {
 	
-	public struct DataInfo {
+	public struct HeaderFlags: OptionSet, Sendable {
+		public let rawValue: UInt8
+		
+		public init(rawValue: UInt8) {
+			self.rawValue = rawValue
+		}
+		
+		/// Message begin flag
+		public static let MB = HeaderFlags(rawValue: 0b10000000)
+		/// Message end flag
+		public static let ME = HeaderFlags(rawValue: 0b01000000)
+		/// Chunked flag
+		public static let CF = HeaderFlags(rawValue: 0b00100000)
+		/// Short record flag
+		public static let SR = HeaderFlags(rawValue: 0b00010000)
+		/// IL (ID Length) is present
+		public static let IL = HeaderFlags(rawValue: 0b00001000)
+		
+		/// Type Name Format options:
+		public static let TNF_WELL_KNOWN   = HeaderFlags(rawValue: 0b00000001) // 0x01
+		public static let TNF_MIME         = HeaderFlags(rawValue: 0b00000010) // 0x02
+		/// Note: don't use this for URLS, use WELLKNOWN instead.
+		public static let TNF_ABSOLUTE_URI = HeaderFlags(rawValue: 0b00000011) // 0x03
+		public static let TNF_EXTERNAL     = HeaderFlags(rawValue: 0b00000100) // 0x04
+		public static let TNF_UNKNOWN      = HeaderFlags(rawValue: 0b00000101) // 0x05
+		public static let TNF_UNCHANGED    = HeaderFlags(rawValue: 0b00000110) // 0x06
+		public static let TNF_RESERVED     = HeaderFlags(rawValue: 0b00000111) // 0x07
+	}
+	
+	public enum HeaderType: UInt8 {
+		case TEXT = 0x54 // 'T'.ascii
+		case URL  = 0x55 // 'U'.ascii
+	}
+	
+	public struct FileInfo {
 		public let data: [UInt8]
 		public let headerLength: Int
 	}
 	
-	public class func ndefDataForUrl(_ url: URL) -> DataInfo {
+	public class func fileForUrl(_ url: URL) -> FileInfo {
 		
 		// See pgs. 30-31 of AN12196
 		
-		// NDEF File Format:
+		// NFC Type 4 File Format:
 		//
 		// Field        | Length     | Description
 		// ---------------------------------------------------------------
@@ -77,8 +81,8 @@ public class Ndef {
 			
 			let payloadLength = UInt8(typeHeader.count + urlBytes.count)
 			
-			let flags: NdefHeaderFlags = [.MB, .ME, .SR, .TNF_WELL_KNOWN]
-			let type = NdefHeaderType.URL
+			let flags: HeaderFlags = [.MB, .ME, .SR, .TNF_WELL_KNOWN]
+			let type = HeaderType.URL
 			
 			messageHeader = [
 				flags.rawValue, // NDEF header flags
@@ -92,8 +96,8 @@ public class Ndef {
 			let payloadLengthLE = UInt32(typeHeader.count + urlBytes.count)
 			let payloadLength: [UInt8] = payloadLengthLE.bigEndian.toByteArray()
 			
-			let flags: NdefHeaderFlags = [.MB, .ME, .TNF_WELL_KNOWN]
-			let type = NdefHeaderType.URL
+			let flags: HeaderFlags = [.MB, .ME, .TNF_WELL_KNOWN]
+			let type = HeaderType.URL
 			
 			messageHeader = [
 				flags.rawValue,   // NDEF header flags
@@ -115,14 +119,14 @@ public class Ndef {
 		let header: [UInt8] = fileHeader + messageHeader + typeHeader
 		let data: [UInt8] = header + urlBytes
 		
-		return DataInfo(data: data, headerLength: header.count)
+		return FileInfo(data: data, headerLength: header.count)
 	}
 	
-	public class func ndefDataForText(_ text: String) -> DataInfo {
+	public class func fileForText(_ text: String) -> FileInfo {
 		
 		// See pgs. 30-31 of AN12196
 		
-		// NDEF File Format:
+		// NFC Type 4 File Format:
 		//
 		// Field        | Length     | Description
 		// ---------------------------------------------------------------
@@ -175,8 +179,8 @@ public class Ndef {
 			
 			let payloadLength = UInt8(typeHeader.count + textBytes.count)
 			
-			let flags: NdefHeaderFlags = [.MB, .ME, .SR, .TNF_WELL_KNOWN]
-			let type = NdefHeaderType.TEXT
+			let flags: HeaderFlags = [.MB, .ME, .SR, .TNF_WELL_KNOWN]
+			let type = HeaderType.TEXT
 			
 			messageHeader = [
 				flags.rawValue, // NDEF header flags
@@ -190,8 +194,8 @@ public class Ndef {
 			let payloadLengthLE = UInt32(typeHeader.count + textBytes.count)
 			let payloadLength: [UInt8] = payloadLengthLE.bigEndian.toByteArray()
 			
-			let flags: NdefHeaderFlags = [.MB, .ME, .TNF_WELL_KNOWN]
-			let type = NdefHeaderType.URL
+			let flags: HeaderFlags = [.MB, .ME, .TNF_WELL_KNOWN]
+			let type = HeaderType.URL
 			
 			messageHeader = [
 				flags.rawValue,   // NDEF header flags
@@ -213,111 +217,70 @@ public class Ndef {
 		let header: [UInt8] = fileHeader + messageHeader + typeHeader
 		let data: [UInt8] = header + textBytes
 		
-		return DataInfo(data: data, headerLength: header.count)
+		return FileInfo(data: data, headerLength: header.count)
 	}
 	
-	public struct Template: Hashable {
+	public class func fileForBinary(_ binary: Data) -> FileInfo {
 		
-		public enum Value: Hashable {
-			case url(URL)
-			case text(String)
+		// NFC Type 4 File Format:
+		//
+		// Field        | Length     | Description
+		// ---------------------------------------------------------------
+		// NLEN         | 2 bytes    | Length of the NDEF message in big-endian format.
+		// NDEF Message | NLEN bytes | NDEF message. See NFC Data Exchange Format (NDEF).
+		//
+		// https://docs.nordicsemi.com/bundle/ncs-latest/page/nrfxlib/nfc/doc/type_4_tag.html#t4t-format
+		//
+		var fileHeader: [UInt8] = [
+			0x00, // Placeholder for NLEN
+			0x00  // Placeholder for NLEN
+		]
+		
+		// NDEF Message header:
+		
+		let messageHeader: [UInt8]
+		
+		let fitsInShortRecord = binary.count <= 255
+		if fitsInShortRecord {
+			
+			let payloadLength = UInt8(binary.count)
+			
+			let flags: HeaderFlags = [.MB, .ME, .SR, .TNF_UNKNOWN]
+			let type = HeaderType.TEXT
+			
+			messageHeader = [
+				flags.rawValue, // NDEF header flags
+				0x00,           // Type length
+				payloadLength   // Payload length (SR = 1 byte)
+			]
+			
+		} else {
+			
+			let payloadLengthLE = UInt32(binary.count)
+			let payloadLength: [UInt8] = payloadLengthLE.bigEndian.toByteArray()
+			
+			let flags: HeaderFlags = [.MB, .ME, .TNF_UNKNOWN]
+			let type = HeaderType.URL
+			
+			messageHeader = [
+				flags.rawValue,   // NDEF header flags
+				0x00,             // Type length
+				payloadLength[0], // Payload length (!SR = 4 bytes)
+				payloadLength[1], // Payload length
+				payloadLength[2], // Payload length
+				payloadLength[3]  // Payload length
+			]
 		}
 		
-		public let value: Value
-		public let data: [UInt8]
-		public let headerLength: Int
-		public let piccDataOffset: Int
-		public let cmacOffset: Int
+		let fileLengthLE = UInt16(messageHeader.count + binary.count)
+		let fileLength: [UInt8] = fileLengthLE.bigEndian.toByteArray()
 		
-		public var valueString: String {
-			switch value {
-			case .url(let url):
-				return url.absoluteString
-			case .text(let text):
-				return text
-			}
-		}
+		fileHeader[0] = fileLength[0]
+		fileHeader[1] = fileLength[1]
 		
-		public init?(baseUrl: URL) {
-			
-			guard var comps = URLComponents(url: baseUrl, resolvingAgainstBaseURL: false) else {
-				return nil
-			}
-			
-			var queryItems = comps.queryItems ?? []
-			
-			// The `baseUrl` SHOULD NOT have either `picc_data` or `cmac` parameters.
-			// But just to be safe, we'll remove them if they're present.
-			//
-			queryItems.removeAll(where: { item in
-				let name = item.name.lowercased()
-				return name == "picc_data" || name == "cmac"
-			})
-			
-			// picc_data=(16_bytes_hexadecimal)
-			// cmac=(8_bytes_hexadecimal)
-			
-			queryItems.append(URLQueryItem(name: "picc_data", value: "00000000000000000000000000000000"))
-			queryItems.append(URLQueryItem(name: "cmac",      value: "0000000000000000"))
-			
-			comps.queryItems = queryItems
-			
-			guard let resolvedUrl = comps.url else {
-				return nil
-			}
-			
-			let dataInfo = ndefDataForUrl(resolvedUrl)
-			
-			// Ultimately, the URL gets encoded as UTF-8,
-			// and the offsets are used as indexes within this UTF-8 representation.
-			//
-			// So we need to do our calculations within the string's utf8View.
-			
-			let urlUtf8 = resolvedUrl.absoluteString.utf8
-			
-			guard let range1 = urlUtf8.ranges(of: "picc_data=".utf8).last else {
-				return nil
-			}
-			let offset1 = urlUtf8.distance(from: urlUtf8.startIndex, to: range1.upperBound)
-			
-			guard let range2 = urlUtf8.ranges(of: "cmac=".utf8).last else {
-				return nil
-			}
-			let offset2 = urlUtf8.distance(from: urlUtf8.startIndex, to: range2.upperBound)
-			
-			self.value = .url(resolvedUrl)
-			self.data = dataInfo.data
-			self.headerLength = dataInfo.headerLength
-			self.piccDataOffset = offset1 + dataInfo.headerLength
-			self.cmacOffset = offset2 + dataInfo.headerLength
-		}
+		let header: [UInt8] = fileHeader + messageHeader
+		let data: [UInt8] = header + binary
 		
-		public init(baseText: String) {
-			
-			// picc_data=(16_bytes_hexadecimal)
-			// cmac=(8_bytes_hexadecimal)
-			
-			let fullText = "\(baseText)?picc_data=00000000000000000000000000000000&cmac=0000000000000000"
-			//                         +123456789 123456789 123456789 123456789 123456789
-			//                                    ^+11                                  ^+49
-			
-			let dataInfo = ndefDataForText(fullText)
-			
-			// Ultimately, the value gets encoded as UTF-8,
-			// and the offsets are used as indexes within this UTF-8 representation.
-			//
-			// So we need to do our calculations within the string's utf8View.
-			
-			let baseTextLength = baseText.utf8.count
-			let offset1 = baseTextLength + 11
-			let offset2 = baseTextLength + 49
-			
-			self.value = .text(fullText)
-			self.data = dataInfo.data
-			self.headerLength = dataInfo.headerLength
-			self.piccDataOffset = offset1 + dataInfo.headerLength
-			self.cmacOffset = offset2 + dataInfo.headerLength
-		}
-		
-	} // </struct Template>
+		return FileInfo(data: data, headerLength: header.count)
+	}
 }

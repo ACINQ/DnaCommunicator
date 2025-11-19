@@ -78,8 +78,8 @@ struct WriteCardView: View {
 				switch selectedTemplate.template.value {
 				case .url(let url):
 					Text(preventAutoHyphenation(url.absoluteString))
-				case .text(let str):
-					Text(preventAutoHyphenation(str))
+				case .binary(let binary):
+					Text(preventAutoHyphenation(binary.toHex()))
 				}
 			}
 			.font(.callout)

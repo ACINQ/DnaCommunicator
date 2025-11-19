@@ -68,7 +68,7 @@ class Utils {
 	static func messageWithPadding(_ message: [UInt8]) -> [UInt8] {
 		let blockSize = 16
 		
-		// This is wrong. From page 24:
+		// From page 24:
 		//
 		// > Padding is applied according to Padding Method 2 of ISO/IEC 9797-1 [7],
 		// > i.e. by adding always 80h followed, if required, by zero bytes until a
@@ -80,11 +80,6 @@ class Utils {
 		//
 		// This helper method isn't used during AuthenticateEV2First, so we always
 		// need to add padding here.
-		//
-	//	let remainder = message.count % blockSize
-	//	if remainder == 0 {
-	//		return message
-	//	}
 		
 		let blocks = message.count / blockSize
 		var result = [UInt8](repeating: 0, count: (blocks + 1)*blockSize)
